@@ -1,28 +1,22 @@
 const plugins = [
-  {
-    name: "FastLogin",
-    source: "https://github.com/games647/FastLogin",
-    version: "1.12-SNAPSHOT",
-    jar: "FastLogin-1.12-SNAPSHOT.jar"
-  },
-  {
-    name: "SomePlugin",
-    source: "https://github.com/example/SomePlugin",
-    version: "2.0.0",
-    jar: "SomePlugin-2.0.0.jar"
-  }
-  // Add more plugins here
+  { name: "FastLogin", id: "fastlogin" }
 ];
 
-const tableBody = document.getElementById("pluginTableBody");
+const pluginList = document.getElementById("plugin-list");
 
 plugins.forEach(plugin => {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${plugin.name}</td>
-    <td><a href="${plugin.source}" target="_blank">GitHub</a></td>
-    <td>${plugin.version}</td>
-    <td><a href="builds/${plugin.jar}" class="btn btn-success btn-sm" download>Download</a></td>
+  const col = document.createElement("div");
+  col.className = "col-sm-12 col-md-6 col-lg-4";
+
+  col.innerHTML = `
+    <div class="card plugin-card h-100">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">${plugin.name}</h5>
+        <p class="card-text">Click below to view the latest build and info.</p>
+        <a href="plugins/${plugin.id}/README.md" class="btn btn-success mt-auto" target="_blank">Latest Build</a>
+      </div>
+    </div>
   `;
-  tableBody.appendChild(row);
+
+  pluginList.appendChild(col);
 });
